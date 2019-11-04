@@ -29,7 +29,3 @@ logging:
         web: debug
         security: debug
 
-
-#logging:
-#  level:
-#    com.zhongan.kgp.main.dao.mappers : debug
