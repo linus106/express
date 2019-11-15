@@ -58,6 +58,14 @@ public class CommonResponse<T> {
         return new CommonResponse(false, ResultCode.ERROR_PARAM.getCode(), message);
     }
 
+    public static <T> CommonResponse<T> unAuthorized(String message) {
+        return new CommonResponse(false, ResultCode.UNAUTHORIZED.getCode(), message);
+    }
+
+    public static <T> CommonResponse<T> fobidden(String message) {
+        return new CommonResponse(false, ResultCode.FORBIDDEN.getCode(), message);
+    }
+
 
 
 

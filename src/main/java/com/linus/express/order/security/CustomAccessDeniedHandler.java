@@ -20,7 +20,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException exception) throws IOException, ServletException {
         response.setHeader("Content-Type", "application/json;charset=utf-8");
-        response.getWriter().print(JSON.toJSONString(CommonResponse.errorParam(exception.getMessage())));
+        response.getWriter().print(JSON.toJSONString(CommonResponse.fobidden(exception.getMessage())));
         response.getWriter().flush();
     }
 }

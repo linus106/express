@@ -22,6 +22,9 @@ public class Order {
     private Long id;
 
     @Column
+    private String expressNumber;
+
+    @Column
     private String goodsName;
 
     @Column

@@ -20,12 +20,3 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-logging:
-  level:
-    root: info
-    com.hdfg159: debug
-    org:
-      springframework:
-        web: debug
-        security: debug
-

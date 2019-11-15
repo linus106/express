@@ -1,6 +1,8 @@
 package com.linus.express.order.web;
 
 import com.linus.express.order.bean.CommonResponse;
+import com.linus.express.order.bean.OrderQueryCondition;
+import com.linus.express.order.bean.PageableData;
 import com.linus.express.order.dao.entity.Order;
 import com.linus.express.order.dao.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,11 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public CommonResponse delete(@PathVariable("id") Long id) {
         orderRepository.deleteById(id);
+        return CommonResponse.ok();
+    }
+
+    @PostMapping("/query")
+    public CommonResponse<PageableData<Order>> query(@RequestBody OrderQueryCondition condition) {
         return CommonResponse.ok();
     }
 }
