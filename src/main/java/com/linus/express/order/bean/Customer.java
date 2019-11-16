@@ -1,5 +1,6 @@
 package com.linus.express.order.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Column;
  * @Description TODO
  */
 @Data
+@AllArgsConstructor
 public class Customer {
 
     private String name;

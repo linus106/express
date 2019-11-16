@@ -1,11 +1,9 @@
 package com.linus.express.order.web;
 
-import com.linus.express.order.bean.CommonResponse;
-import com.linus.express.order.bean.Customer;
-import com.linus.express.order.bean.OrderQueryCondition;
-import com.linus.express.order.bean.PageableData;
+import com.linus.express.order.bean.*;
 import com.linus.express.order.dao.entity.Order;
 import com.linus.express.order.dao.repository.OrderRepository;
+import com.linus.express.order.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,8 +21,11 @@ import java.util.List;
 @RequestMapping("/api/customer")
 public class CustomerController {
 
+    @Autowired
+    private CustomerService customerService;
+
     @PostMapping("/query")
-    public CommonResponse<PageableData<Customer>> query(@RequestBody OrderQueryCondition condition) {
-        return CommonResponse.ok();
+    public CommonResponse<PageableData<Customer>> query(@RequestBody CustomerQueryCondition condition) {
+        return CommonResponse.ok(customerService.query(condition));
     }
 }

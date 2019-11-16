@@ -16,8 +16,4 @@ public class PageInfo {
     private Integer pageNo;
     private Integer pageSize;
 
-    public Integer getOffset() {
-        return  (pageNo-1) * pageSize;
-    }
-
 }

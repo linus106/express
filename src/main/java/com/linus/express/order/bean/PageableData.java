@@ -14,6 +14,6 @@ public class PageableData<T> {
 
     private List<T> payload;
 
-    private Integer count;
+    private Long count;
 
 }
