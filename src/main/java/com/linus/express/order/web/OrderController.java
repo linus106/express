@@ -56,11 +56,11 @@ public class OrderController {
         return CommonResponse.ok(orderService.createOrder(order));
     }
 
-//    @PutMapping("/{id}")
-//    public CommonResponse<Long> update(@PathVariable("id") Integer id, @RequestBody Order order) {
-//        orderRepository.save(order);
-//        return CommonResponse.ok(order.getId());
-//    }
+    @PutMapping("/{id}")
+    public CommonResponse<Long> update(@PathVariable("id") Integer id, @RequestBody Order order) {
+        orderRepository.save(order);
+        return CommonResponse.ok(order.getId());
+    }
 
     @DeleteMapping("/{id}")
     public CommonResponse delete(@PathVariable("id") Long id) {
