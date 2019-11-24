@@ -87,7 +87,7 @@ public class OrderController {
     }
 
     @PostMapping("/import")
-    public void exportExcel(@RequestBody MultipartFile file) throws IOException {
+    public CommonResponse<String> exportExcel(@RequestBody MultipartFile file) throws IOException {
         EasyExcel.read(file.getInputStream(), Order.class, new AnalysisEventListener() {
 
             @Override
@@ -100,6 +100,7 @@ public class OrderController {
             public void doAfterAllAnalysed(AnalysisContext analysisContext) {
             }
         }).sheet().doRead();
+        return CommonResponse.ok();
     }
 
 }
