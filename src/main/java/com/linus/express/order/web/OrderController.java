@@ -1,21 +1,23 @@
 package com.linus.express.order.web;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.context.AnalysisContext;
+import com.alibaba.excel.event.AnalysisEventListener;
 import com.linus.express.order.bean.CommonResponse;
 import com.linus.express.order.bean.OrderQueryCondition;
 import com.linus.express.order.bean.PageableData;
 import com.linus.express.order.dao.entity.Order;
 import com.linus.express.order.dao.repository.OrderRepository;
 import com.linus.express.order.service.OrderService;
-import org.aspectj.weaver.ast.Or;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +29,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/order")
+@Slf4j
 public class OrderController {
 
     @Autowired
@@ -82,4 +85,21 @@ public class OrderController {
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
         EasyExcel.write(response.getOutputStream(), Order.class).sheet("模板").doWrite(orders);
     }
+
+    @PostMapping("/import")
+    public void exportExcel(@RequestBody MultipartFile file) throws IOException {
+        EasyExcel.read(file.getInputStream(), Order.class, new AnalysisEventListener() {
+
+            @Override
+            public void invoke(Object o, AnalysisContext analysisContext) {
+                Order order = (Order) o;
+                orderService.createOrder(order);
+            }
+
+            @Override
+            public void doAfterAllAnalysed(AnalysisContext analysisContext) {
+            }
+        }).sheet().doRead();
+    }
+
 }
