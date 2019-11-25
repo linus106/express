@@ -3,11 +3,14 @@ package com.linus.express.order.bean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -38,5 +41,6 @@ public class OrderQueryCondition {
     @ApiModelProperty(name = "寄件时间-结束", example = "2018-11-01 12:18:48")
     private Date sendTimeEnd;
 
+    @Valid @NotNull(message = "分页信息不能为空")
     private PageInfo pageInfo;
 }

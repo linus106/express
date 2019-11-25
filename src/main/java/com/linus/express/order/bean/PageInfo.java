@@ -1,9 +1,9 @@
 package com.linus.express.order.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Min;
+
 
 /**
  * @Author wangxiangyu
@@ -13,7 +13,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class PageInfo {
 
+
     private Integer pageNo;
+
+    @Min(value = 1, message = "Page size must not be less than one!")
     private Integer pageSize;
 
 }

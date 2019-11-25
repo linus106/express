@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -72,7 +73,7 @@ public class OrderController {
     }
 
     @PostMapping("/query")
-    public CommonResponse<PageableData<Order>> query(@RequestBody OrderQueryCondition condition) {
+    public CommonResponse<PageableData<Order>> query(@Valid @RequestBody OrderQueryCondition condition) {
         return CommonResponse.ok(orderService.query(condition));
     }
 
