@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NonNull;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -43,4 +44,14 @@ public class OrderQueryCondition {
 
     @Valid @NotNull(message = "分页信息不能为空")
     private PageInfo pageInfo;
+
+    public void adaptEmptyFields() {
+        expressNumber = StringUtils.isEmpty(expressNumber) ? null : expressNumber;
+        logisticsCompany = StringUtils.isEmpty(logisticsCompany) ? null : logisticsCompany;
+        senderInfo = StringUtils.isEmpty(senderInfo) ? null : senderInfo;
+        receiverInfo = StringUtils.isEmpty(receiverInfo) ? null : receiverInfo;
+        payType = StringUtils.isEmpty(payType) ? null : payType;
+        senderArea = StringUtils.isEmpty(senderArea) ? null : senderArea;
+        receiverArea = StringUtils.isEmpty(receiverArea) ? null : receiverArea;
+    }
 }
