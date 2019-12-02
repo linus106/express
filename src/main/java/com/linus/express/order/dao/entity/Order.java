@@ -198,7 +198,7 @@ public class Order {
 
     @Column
     @ApiModelProperty(name = "收件人_地区-详细地址", example = "广西壮族自治区桂林市七星区朝阳路信息产业园电商谷")
-    @ExcelProperty("收件人_地区")
+    @ExcelProperty("收件人_详细地址")
     private String receiverAddress;
 
     @Tolerate
