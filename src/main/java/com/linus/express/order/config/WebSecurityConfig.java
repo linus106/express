@@ -62,7 +62,7 @@ public class WebSecurityConfig {
                         and().authorizeRequests().antMatchers("/*").permitAll().
                         and().authorizeRequests().antMatchers("/api/user/**").hasRole("admin").
                         and().authorizeRequests().antMatchers("/api/order/**").authenticated().
-//                        and().formLogin().
+                        and().formLogin().
                         and().formLogin().successHandler(new CustomAuthenticationSuccessHandler()).failureHandler(new CustomAuthenticationFailureHandler()).
                         and().logout().logoutSuccessHandler(new CustomAuthenticationLogoutSuccessHandler()).invalidateHttpSession(true).deleteCookies("JSESSIONID").
                         and().authorizeRequests().anyRequest().permitAll();

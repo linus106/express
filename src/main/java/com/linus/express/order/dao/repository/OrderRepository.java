@@ -1,5 +1,6 @@
 package com.linus.express.order.dao.repository;
 
+import com.linus.express.order.bean.Company;
 import com.linus.express.order.bean.Customer;
 import com.linus.express.order.dao.entity.Order;
 import org.springframework.data.domain.Page;
@@ -47,5 +48,22 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "or o.receiverArea like CONCAT('%',?1,'%') or o.receiverAddress like CONCAT('%',?1,'%')  or ?1 is null)"
     )
     List<Customer> queryCustomer(String keyWord);
+
+
+
+    @Query("select new com.linus.express.order.bean.Company(o.senderCompany, o.senderArea, o.senderArea, o" +
+            ".createDate, o.creator, o.senderFixedPhone) from #{#entityName} o " +
+            "where (o.senderCompany like CONCAT('%',?1,'%') or o.senderFixedPhone like CONCAT('%',?1,'%')" +
+            "or o.senderArea like CONCAT('%',?1,'%') or o.senderAddress like CONCAT('%',?1,'%')  or ?1 is null)"
+    )
+    List<Company> querySenderCompany(String keyWord);
+
+
+    @Query("select new com.linus.express.order.bean.Company(o.receiverCompany, o.receiverArea, o.receiverArea, o" +
+            ".createDate, o.creator, o.receiverFixedPhone) from #{#entityName} o " +
+            "where (o.receiverCompany like CONCAT('%',?1,'%') or o.receiverFixedPhone like CONCAT('%',?1,'%')" +
+            "or o.receiverArea like CONCAT('%',?1,'%') or o.receiverAddress like CONCAT('%',?1,'%')  or ?1 is null)"
+    )
+    List<Company> queryReceiverCompany(String keyWord);
 
 }

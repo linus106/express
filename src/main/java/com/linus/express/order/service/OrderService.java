@@ -1,5 +1,6 @@
 package com.linus.express.order.service;
 
+import com.linus.express.order.annotation.Adapt;
 import com.linus.express.order.bean.OrderQueryCondition;
 import com.linus.express.order.bean.PageableData;
 import com.linus.express.order.dao.entity.Order;
@@ -43,8 +44,9 @@ public class OrderService {
         return order;
     }
 
-
+    @Adapt
     public PageableData<Order> query(OrderQueryCondition condition) {
+//        condition.adaptEmptyFields();//see aop package
         Page<Order> page =  orderRepository.queryByCondition(condition.getExpressNumber(),
                 condition.getLogisticsCompany(), condition.getSenderInfo(), condition.getReceiverInfo(),
                 condition.getPayType(), condition.getSenderArea(), condition.getReceiverArea(),
@@ -58,7 +60,9 @@ public class OrderService {
     }
 
 
+    @Adapt
     public List<Order> exportExcel(OrderQueryCondition condition) {
+//        condition.adaptEmptyFields();//see aop package
         Page<Order> page =  orderRepository.queryByCondition(condition.getExpressNumber(),
                 condition.getLogisticsCompany(), condition.getSenderInfo(), condition.getReceiverInfo(),
                 condition.getPayType(), condition.getSenderArea(), condition.getReceiverArea(),
