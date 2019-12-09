@@ -25,7 +25,7 @@ public class CompanyController {
     private CompanyService companyService;
 
     @PostMapping("/query")
-    public CommonResponse<List<Company>> query(@RequestParam("keyword") String keyword) {
+    public CommonResponse<List<Company>> query(@RequestParam(value = "keyword", required = false) String keyword) {
         return CommonResponse.ok(companyService.query(keyword));
     }
 
