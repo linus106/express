@@ -1,5 +1,6 @@
 package com.linus.express.order.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Entity
 @Builder
 @Table(name = "USER_INFO")
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @ApiModel
 public class UserInfo {
 
@@ -42,7 +44,7 @@ public class UserInfo {
     @ApiModelProperty("备注")
     private String remark;
 
-    @Column
+    @Column(updatable = false)
     @ApiModelProperty("创建时间")
     private Date createTime;
 

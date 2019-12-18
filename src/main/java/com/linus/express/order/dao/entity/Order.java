@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Proxy;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -116,12 +118,12 @@ public class Order {
     @ExcelProperty("续价")
     private Float continuationPrice;
 
-    @Column
+    @Column(updatable = false)
     @ApiModelProperty(name = "创建时间", example = "2018-10-01 12:18:48")
     @ExcelProperty("创建时间")
     private Date createDate;
 
-    @Column
+    @Column(updatable = false)
     @ApiModelProperty(name = "创建者", example = "admin")
     @ExcelProperty("创建者")
     private String creator;
